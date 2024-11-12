@@ -1,0 +1,57 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Focus To-Do</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <button onclick="switchSection('today')">
+                <span class="icon">🏠</span>
+                <span class="text">Сегодня</span>
+            </button>
+            <button onclick="switchSection('week')">
+                <span class="icon">📅</span>
+                <span class="text">На эту неделю</span>
+            </button>
+            <button onclick="switchSection('scheduled')">
+                <span class="icon">⏰</span>
+                <span class="text">Запланированные</span>
+            </button>
+            <button onclick="switchSection('completed')">
+                <span class="icon">✔️</span>
+                <span class="text">Решённые</span>
+            </button>
+        </div>
+
+
+
+        <!-- Основная часть для отображения задач -->
+        <div class="main-content">
+            <h1>Focus To-Do</h1>
+            <h2 id="section-title">Сегодня</h2>
+        
+            <div id="task-list"></div>
+            <!-- Панель ввода задачи -->
+            <div id="task-input-panel">
+                <input type="text" id="task-input" placeholder="Введите задачу">
+                <button onclick="addTask()">Добавить задачу</button>
+            </div>
+        </div>
+        
+
+        <!-- Таймер Pomodoro -->
+        <div id="pomodoro-timer">
+            <h2>Таймер Pomodoro</h2>
+            <p id="timer-display">25:00</p>
+            <button onclick="startPomodoro()">Начать</button>
+            <button onclick="resetPomodoro()">Сбросить</button>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

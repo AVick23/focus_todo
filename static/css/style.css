@@ -1,0 +1,312 @@
+/* Общее оформление страницы */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    background-color: #fdf6f0; /* Пастельный фон */
+    color: #333;
+}
+
+/* Контейнер для основной структуры */
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/* Боковая панель */
+/* Скрываем текст в кнопках, когда панель свернута */
+.sidebar {
+    width: 55px;
+    background-color: #fdf6f0;
+    color: #fff;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    border-radius: 12px;
+    transition: width 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Показываем только иконки, скрываем текст */
+.sidebar .text {
+    display: inline-block;
+    margin-left: 8px;
+}
+
+/* Скрываем текст при свернутой панели */
+.sidebar.shrunk .text {
+    display: none;
+}
+
+/* Показываем панель с текстом при наведении */
+.sidebar:hover {
+    width: 280px;
+}
+
+.sidebar.expanded {
+    width: 280px;
+}
+
+.sidebar button {
+    margin: 16px 0;
+    padding: 12px 16px;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    text-align: left;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: #FF9F55; /* Оранжевый пастельный цвет кнопок */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Скрываем кнопки при начальном состоянии */
+    animation: fadeIn 0.3s forwards; /* Добавляем анимацию появления */
+    transform: translateY(20px); /* Начальная позиция кнопок */
+}
+
+/* Плавное появление кнопок */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); /* Начальная позиция */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Финальная позиция */
+    }
+}
+
+.sidebar button:nth-child(1) {
+    animation-delay: 0.1s; /* Задержка для каждого элемента */
+}
+
+.sidebar button:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.sidebar button:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.sidebar button:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* Эффекты для кнопок */
+.sidebar button:hover {
+    background-color: #FF8C3A; /* Более темный оранжевый для ховера */
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Более выраженная тень */
+}
+
+/* Основной контент */
+.main-content {
+    flex: 1;
+    padding: 24px;
+    overflow-y: auto;
+    background-color: #ffffff; /* Белый фон для контента */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    opacity: 0;
+    animation: fadeInContent 0.5s forwards; /* Плавное появление контента */
+}
+
+/* Анимация для основного контента */
+@keyframes fadeInContent {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Стилизация таймера Pomodoro */
+#pomodoro-timer {
+    margin-top: 24px;
+    text-align: center;
+    padding: 16px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+/* Эффект для таймера */
+#pomodoro-timer:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+#pomodoro-timer h2 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #333;
+}
+
+#pomodoro-timer p {
+    font-size: 32px;
+    font-weight: 700;
+    color: #FF9F55; /* Оранжевый пастельный цвет для текста таймера */
+}
+
+/* Заголовки */
+h1, h2 {
+    color: #333;
+    font-weight: 600;
+}
+
+/* Секции задач */
+#task-section, #pomodoro-timer {
+    margin-top: 24px;
+}
+
+/* Список задач */
+/* Список задач */
+#task-list {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Задачи */
+#task-list p {
+    font-size: 16px;
+    color: #333; /* Темно-серый текст */
+    background-color: #ffe0b2; /* Светлый персиковый фон для задач */
+    max-width: 65%;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 8px;
+    opacity: 0;
+    transform: translateY(20px); /* Начальная позиция задачи */
+    animation: fadeInTask 0.5s forwards; /* Добавляем анимацию */
+}
+
+/* Анимация для добавления задачи */
+@keyframes fadeInTask {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); /* Начальная позиция */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Финальная позиция */
+    }
+}
+
+/* Эффект для задач при наведении */
+#task-list p:hover {
+    background-color: #ffcc80; /* Немного темнее персиковый при наведении */
+}
+
+#task-list button {
+    margin-left: 10px;
+    padding: 6px 12px;
+    background-color: #FF9F55; /* Пастельный оранжевый для кнопок */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#task-list button:hover {
+    background-color: #FF8C3A; /* Более насыщенный оранжевый при наведении */
+}
+
+#task-list button[disabled] {
+    background-color: #d1d1d1;
+    cursor: not-allowed;
+}
+
+/* Кнопки */
+button {
+    padding: 12px 20px;
+    background-color: #FF9F55; /* Пастельный оранжевый для кнопок */
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #FF8C3A; /* Более темный оранжевый для ховера */
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    background-color: #F76C25; /* Цвет при нажатии */
+    transform: translateY(0);
+}
+
+/* Всплывающие кнопки */
+button[disabled] {
+    background-color: #d1d1d1;
+    cursor: not-allowed;
+}
+
+/* Инпут для задач */
+input[type="text"] {
+    width: 100%;
+    max-width: 65%; /* Максимальная ширина поля ввода */
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #FF9F55; /* Оранжевая рамка для ввода */
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    background-color: #fff3e0; /* Очень светлый персиковый фон для поля ввода */
+    opacity: 0;
+    animation: fadeInInput 0.5s forwards;
+    margin-left: auto; /* Центрируем поле */
+    margin-right: auto; /* Центрируем поле */
+}
+
+/* Плавное появление поля ввода */
+@keyframes fadeInInput {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+input[type="text"]:focus {
+    border-color: #F76C25; /* Темный оранжевый при фокусе */
+    outline: none;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+    }
+
+    .main-content {
+        padding: 16px;
+    }
+}
